@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ITI_Examination_System.Exams
 {
-    internal abstract class Exam : IExam
+    internal abstract class Exam 
     {
 
         public string Time { get; set; }
