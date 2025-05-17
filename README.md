@@ -1,64 +1,81 @@
-ITI Examination System
-Overview
-The ITI Examination System is a console application designed to manage and administer various types of exams, including multiple-choice, true/false, and multiple-answer questions. It allows users to select an exam (Final or Practical) and answer a series of questions, which are evaluated based on the correct answers. This system is structured using object-oriented programming concepts and follows a modular design for ease of extension and maintenance.
+# ITI Examination System
 
-Key Features
-Exam Types: Supports different types of exams, including:
+The **ITI Examination System** is designed to provide a flexible and interactive way to manage, display, and evaluate exams. This system allows users to conduct both practical and final exams, with support for multiple question types like multiple choice, true/false, and multiple answer questions.
 
-Final Exam: Comprehensive exam with a time limit.
+## Features
 
-Practical Exam: Focused on practical questions, also with a time limit.
+- **Question Types**: 
+  - **Multiple Choice Questions (COQuestion)**: A single correct answer from a list of options.
+  - **True/False Questions (TFQuestion)**: A simple true/false question.
+  - **Multiple Answer Questions (CAQuestion)**: A question requiring multiple correct answers.
 
-Question Types:
+- **Exams**: 
+  - **Practice Exam (PracticeExam)**: Simulates a practice environment, with the ability to show questions and collect answers.
+  - **Final Exam (FinalExam)**: A formal exam type that can be timed and graded based on the user's answers.
 
-Multiple Choice (COQuestion): One correct answer.
+- **Marking System**: Each question has a specific mark assigned, and the system keeps track of the user's score.
 
-True/False (TFQuestion): Simple true/false question format.
+- **Answer Validation**: The system validates answers against a dictionary of correct answers and provides feedback.
 
-Multiple Answer (CAQuestion): Allows multiple correct answers.
+## Structure
 
-Answer Validation: After the user selects their answers, the system checks them against the correct answers and scores the exam accordingly.
+The system is organized into several core components:
 
-Logging: Each question added to the exam is logged to a file, which includes details such as the question header, marks, and body.
+### 1. **Questions**
+   - **Question Class**: Base class with properties such as `Header`, `Body`, `Marks`, and a list of possible answers.
+   - **COQuestion**: A derived class for multiple-choice questions (one correct answer).
+   - **TFQuestion**: A derived class for true/false questions.
+   - **CAQuestion**: A derived class for questions with multiple correct answers.
 
-Structure and Classes
-1. Program Class
-The entry point of the application. It initializes the question list, prompts the user to choose an exam type (Final or Practical), and then displays the corresponding exam.
+### 2. **Answers**
+   - **Answer Class**: Represents a single answer choice for any question.
+   - **AList**: A custom list class to store answers.
 
-2. Question Class
-A base class for all question types. It contains properties such as the question body, header, marks, and a list of possible answers.
+### 3. **Exams**
+   - **Exam Class (abstract)**: The base class for different types of exams, containing properties like `Time`, `NOQuestions`, and `Subject`.
+   - **PracticeExam**: Derived class that simulates a practice exam.
+   - **FinalExam**: Derived class for the actual final exam, with time limits and a scoring system.
 
-3. COQuestion, TFQuestion, CAQuestion
-Inherits from the Question class and represents different types of questions:
+### 4. **Subject**
+   - The `Subject` class represents the subject of the exam (e.g., "Programming").
 
-COQuestion: Single-choice question.
+### 5. **QList**
+   - A custom list to manage questions, log them to a file, and add them to the exam.
 
-TFQuestion: True/False question.
+## Functionality
 
-CAQuestion: Multiple-answer question.
+1. **Adding Questions**: 
+   - The system allows you to create and add different types of questions to an exam.
 
-4. Answer Class
-Represents an individual answer choice. It contains the answer text and overrides methods for equality comparison and hashing.
+2. **Displaying the Exam**: 
+   - Based on the type of exam selected (Final or Practical), the system displays all the questions, allows the user to input answers, and calculates the score.
 
-5. Exam Class (Abstract)
-An abstract class that defines the structure of an exam. It contains properties like the number of questions, time limit, and the subject. The ShowExam method is abstract, and the subclasses (like FinalExam and PracticeExam) implement it to display the exam and grade it.
+3. **Logging Questions**: 
+   - Each time a question is added, its header, body, and marks are logged into a file for record-keeping.
 
-6. FinalExam and PracticeExam
-Classes that inherit from Exam and provide specific implementations of the ShowExam method for displaying and grading the respective types of exams.
+4. **Scoring**: 
+   - The system checks the user’s responses against the correct answers, accumulates the score, and displays it at the end of the exam.
 
-7. QList Class
-A custom list class derived from List<Question>, which logs each question added to the list. It ensures that the exam questions are stored in an organized manner while maintaining logs for each addition.
+## How It Works
 
-8. AList Class
-A custom list class derived from List<Answer>, specifically designed to hold answer choices for questions.
+- The program begins by prompting the user to choose between a **Final Exam** or a **Practical Exam**.
+- The user then sees each question along with the possible answers.
+- For each question, the user selects an answer or answers (depending on the question type).
+- After answering all questions, the system calculates the score based on the user's inputs and displays the result.
 
-How it Works
-Question Creation: A list of questions is created, where each question has multiple possible answers.
+## Example Workflow
 
-User Selection: The user chooses whether to take a Final or Practical exam.
+1. **Select Exam Type**: The user is prompted to choose between "Final" or "Practical".
+2. **Display Questions**: The exam type determines which set of questions is shown.
+3. **Answer Questions**: The user enters their answers to each question.
+4. **Score Calculation**: After answering, the system calculates the total score based on the correct answers.
+5. **Correct Answers**: The system then displays the correct answers for each question.
 
-Answering Questions: The system presents each question, and the user selects answers by entering the corresponding number.
+## Requirements
 
-Validation: The system checks the user's answers against the correct answers and computes a score.
+- **C#** (preferably version 7.0 or higher)
+- **.NET Framework** (compatible version)
 
-Results Display: At the end of the exam, the system displays the total score along with the correct answers.
+## Contributing
+
+If you'd like to contribute to the project, feel free to fork the repository and submit a pull request. Please ensure that your contributions align with the project's objectives.
