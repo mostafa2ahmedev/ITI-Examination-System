@@ -71,11 +71,3 @@ The system is organized into several core components:
 4. **Score Calculation**: After answering, the system calculates the total score based on the correct answers.
 5. **Correct Answers**: The system then displays the correct answers for each question.
 
-## Requirements
-
-- **C#** (preferably version 7.0 or higher)
-- **.NET Framework** (compatible version)
-
-## Contributing
-
-If you'd like to contribute to the project, feel free to fork the repository and submit a pull request. Please ensure that your contributions align with the project's objectives.
